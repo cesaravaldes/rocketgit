@@ -1,6 +1,7 @@
 ![Our cool banner](./assets/RocketGit.jpg)
 
 ---
+[![Build Status](https://travis-ci.org/a-rmz/rocketgit.svg?branch=master)](https://travis-ci.org/a-rmz/rocketgit)
 
 ### How to get it running?
 
