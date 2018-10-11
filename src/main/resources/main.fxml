@@ -30,8 +30,8 @@
       </BorderPane>
    </center>
    <left>
-      <VBox prefHeight="560.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <CustomTextField styleClass="rounded-borders" promptText="%branch_tree_filter">
+      <VBox prefHeight="560.0" prefWidth="200.0" BorderPane.alignment="CENTER" styleClass="color-black">
+        <CustomTextField styleClass="rounded-borders" promptText="%repo_tree_filter">
             <left>
                 <Label style="-fx-padding: 0 2 0 7;">
                     <graphic>
@@ -43,7 +43,12 @@
               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
            </VBox.margin>
         </CustomTextField>
-        <TreeView prefHeight="560.0" prefWidth="200.0" />
+        <Label text="%repo_tree_header">
+          <VBox.margin>
+              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+          </VBox.margin>
+        </Label>
+        <TreeView fx:id="treeViewRepoList" prefHeight="560.0" prefWidth="200.0" />
       </VBox>
    </left>
    <top>
