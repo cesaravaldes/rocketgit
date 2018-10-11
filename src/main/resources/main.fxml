@@ -1,32 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.layout.BorderPane?>
-
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rocketgit.MainController">
-    <top>
-        
-    </top>
+<?import com.rocketgit.components.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.controlsfx.control.textfield.CustomTextField?>
+<BorderPane prefHeight="600.0" prefWidth="800.0" stylesheets="main-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rocketgit.MainController">
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Graph" />
+                <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Commit" />
+                  <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Author" />
+                  <TableColumn editable="false" prefWidth="275.3399963378906" sortable="false" text="Description" />
+                  <TableColumn editable="false" minWidth="0.0" prefWidth="99.15997314453125" sortable="false" text="Date" />
+              </columns>
+            </TableView>
+         </center>
+         <top>
+            <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <items>
+                  <ChoiceBox prefWidth="150.0" styleClass="rounded-borders" />
+              </items>
+            </ToolBar>
+         </top>
+      </BorderPane>
+   </center>
+   <left>
+      <VBox prefHeight="560.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <CustomTextField styleClass="rounded-borders" promptText="Filter">
+            <left>
+                <Label style="-fx-padding: 0 2 0 7;">
+                    <graphic>
+                        <FontAwesomeIconView style="-glyph-name: SEARCH;"/>
+                    </graphic>
+                </Label>
+            </left>
+           <VBox.margin>
+              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+           </VBox.margin>
+        </CustomTextField>
+        <TreeView prefHeight="560.0" prefWidth="200.0" />
+      </VBox>
+   </left>
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <IconMenuItem icon="SIGN_OUT" text="Exit" onAction="#exit"/>
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
+            <Menu mnemonicParsing="false" text="Repo">
+              <items>
+                  <IconMenuItem icon="PLUS_CIRCLE" text="New"/>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <IconMenuItem icon="ARCHIVE" text="Add to stage" />
+                  <IconMenuItem icon="CHECK" text="Commit" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <IconMenuItem icon="ARROW_DOWN" text="Pull" />
+                  <IconMenuItem icon="ARROW_UP" text="Push" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Commit">
+               <items>
+                  <IconMenuItem icon="PLUS_CIRCLE" text="All (Staged)" />
+                  <IconMenuItem icon="MEDKIT" text="Amend" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Branch">
+              <items>
+                  <IconMenuItem icon="CODE_FORK" text="Create" />
+                  <IconMenuItem icon="EXCHANGE" text="Checkout" />
+                  <IconMenuItem icon="ARROW_LEFT" text="Merge" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Remote">
+              <items>
+                  <IconMenuItem icon="CLOUD" text="Add" />
+                  <IconMenuItem icon="EDIT" text="Update" />
+                  <IconMenuItem icon="MINUS_CIRCLE" text="Remove" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>
