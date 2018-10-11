@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import org.controlsfx.control.textfield.CustomTextField?>
-<BorderPane prefHeight="600.0" prefWidth="800.0" stylesheets="main-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rocketgit.MainController">
+<BorderPane prefHeight="600.0" prefWidth="800.0" stylesheets="main-stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rocketgit.MainController">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
@@ -30,7 +30,7 @@
       </BorderPane>
    </center>
    <left>
-      <VBox prefHeight="560.0" prefWidth="200.0" BorderPane.alignment="CENTER" styleClass="color-black">
+      <VBox prefHeight="560.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <CustomTextField styleClass="rounded-borders" promptText="%repo_tree_filter">
             <left>
                 <Label style="-fx-padding: 0 2 0 7;">
