@@ -10,9 +10,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("config.fxml"));
         stage.setTitle("Rocket.Git");
-        stage.setScene(new Scene(root, 800, 600));
+        stage.setScene(new Scene(root, 600, 480));
         stage.show();
     }
 
