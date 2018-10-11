@@ -9,6 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
 public class IconMenuItem extends CustomMenuItem {
+
+    private Label label;
+    private FontAwesomeIconView icon;
+
     public IconMenuItem(@NamedArg("icon") String iconName, @NamedArg("text") String text) {
         HBox content = new HBox();
         content.setAlignment(Pos.CENTER);
@@ -16,18 +20,34 @@ public class IconMenuItem extends CustomMenuItem {
         content.setSpacing(10);
 
         if (!iconName.isEmpty()) {
-            FontAwesomeIconView icon = new FontAwesomeIconView();
+            icon = new FontAwesomeIconView();
             icon.setGlyphName(iconName);
             content.getChildren().add(icon);
         }
 
         if (!text.isEmpty()) {
-            Label label = new Label(text);
+            label = new Label(text);
             label.setStyle("-fx-text-fill: black;");
             content.getChildren().add(label);
         }
 
         this.setMnemonicParsing(false);
         this.setContent(content);
+    }
+
+    public void setLabelText(String text) {
+        this.label.setText(text);
+    }
+
+    public String getLabelText() {
+        return this.label.getText();
+    }
+
+    public void setIconName(String name) {
+        this.icon.setGlyphName(name);
+    }
+
+    public String getIconName() {
+        return this.icon.getGlyphName();
     }
 }
