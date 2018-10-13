@@ -9,8 +9,7 @@
 }
 
 .expand.show {
-		-fx-background-image: url("expand_less.png");
-		
+		-fx-background-image: url("expand_less.png");		
 }
 
 
