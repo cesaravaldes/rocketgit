@@ -76,7 +76,7 @@
 							  </GridPane>
 							  <Line endX="550.0" opacity="0.4" VBox.vgrow="SOMETIMES">              
 							  </Line>
-							  <Label text="COLORS" style="-fx-font-size: 15;" />
+							  <Label text="%config_color" style="-fx-font-size: 15;" />
 							  <GridPane hgap="5.0" vgap="5.0">
 								 <children>
 									<ToggleSwitch text="%config_ui" fx:id="config_ui" mnemonicParsing="false" />
