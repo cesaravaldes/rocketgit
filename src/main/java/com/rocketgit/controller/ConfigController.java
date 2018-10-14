@@ -72,22 +72,7 @@ public class ConfigController {
 
 		// TODO Remove dummy data
 	private void initRepoList() {
-		treeViewRepoList.setEditable(false);
-	    TreeItem<String> root = new TreeItem<>();
-	    FontAwesomeIconView icon = new FontAwesomeIconView();
-	    icon.setGlyphName("GITHUB");
-	    root.setGraphic(icon);
-	    root.setValue("GitHub");
-	    for (int i = 0; i < 7; i++) {
-	    FontAwesomeIconView itemIcon = new FontAwesomeIconView();
-	    itemIcon.setGlyphName("BOOK");
-	    root.getChildren().add(new TreeItem<>("Repo " + i, itemIcon ));
-	    }
-	    root.setExpanded(true);
-	    treeViewRepoList.setRoot(root);
-	    
 	    config_scope.getItems().addAll("Local", "Global", "System");
-	    //config_ui.getItems().addAll(")
 	    initGrid();
 	}
 	

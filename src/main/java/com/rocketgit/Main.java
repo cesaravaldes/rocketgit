@@ -32,6 +32,7 @@ public class Main extends Application {
         }
 
         Parent root = loader.load(getClass().getClassLoader().getResource("main.fxml").openStream());
+        
         root.setStyle("-fx-font-family: 'Comfortaa';");
         stage.setTitle(rb.getString("title"));
         stage.setScene(new Scene(root, 800, 600));

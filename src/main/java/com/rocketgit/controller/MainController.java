@@ -1,32 +1,48 @@
 package com.rocketgit.controller;
 
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
+import org.controlsfx.control.NotificationPane;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Font;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.Window;
 
 public class MainController {
 
     @FXML
     TreeView<String> treeViewRepoList;
+   
     
     @FXML
-    BorderPane border_pane;
+    StackPane stack_pane;
+    
+    @FXML
+    BorderPane root;
 
     @FXML
     public void initialize() {
+    	// 
+        openTreeView();
         initRepoList();
     }
 
@@ -50,39 +66,85 @@ public class MainController {
             root.getChildren().add(new TreeItem<>("Repo " + i, itemIcon ));
         }
         root.setExpanded(true);
+        
+        
+        treeViewRepoList.setOnMouseClicked(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {         
+            	TreeItem<String> item = treeViewRepoList.getSelectionModel().getSelectedItem();                
+                openTreeView();
+                
+            }
+        });
         treeViewRepoList.setRoot(root);
     }
+            
     
+    public void setView(Node node) {
+    	stack_pane.getChildren().setAll(node);
+    }
     
-    public void openConfig(ActionEvent actionEvent)  {
+    public void loadVista(String fxml) throws IOException {
     	FXMLLoader loader = new FXMLLoader();
-    	 
+   	 
     	ResourceBundle rb = ResourceBundle.getBundle(
     				"i18n.main",
     				new Locale.Builder().setLanguage("en").build()
     				);
     	loader.setResources(rb);
     	loader.setCharset(Charset.forName("UTF-8"));
-
+    	Node root = (loader.load(getClass().getClassLoader().getResource(fxml).openStream()));
+    	root.setStyle("-fx-font-family: 'Comfortaa';");
+    	setView(root);
+    }
+    
+    
+    public void openConfig(ActionEvent actionEvent)  {    	
     	try {
-    		Font.loadFont(getClass().getClassLoader().getResource("Comfortaa-Regular.ttf").toExternalForm(), 13);
-    	}
-    	catch (Exception e) {
-    		e.printStackTrace();
-    		System.exit(0);
-    	}
-    	try {
-    		Parent root = loader.load(getClass().getClassLoader().getResource("config.fxml").openStream());
-
-    		root.setStyle("-fx-font-family: 'Comfortaa';");
-    		Scene scene = new Scene(root);
-    		Stage app_stage = (Stage) border_pane.getScene().getWindow();
-    	    //app_stage.hide(); //optional
-    	    app_stage.setScene(scene);
-    	    app_stage.show();
-    	} catch(Exception e) {
-    		e.printStackTrace();
-    	}
+			loadVista("config.fxml");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}   	
+    }
+    
+    
+    public void openNew(ActionEvent actionEvent) {
     	
+    	try {
+
+    		FXMLLoader loader = new FXMLLoader();
+    	   	 
+        	ResourceBundle rb = ResourceBundle.getBundle(
+        				"i18n.main",
+        				new Locale.Builder().setLanguage("en").build()
+        				);
+        	loader.setResources(rb);
+        	loader.setCharset(Charset.forName("UTF-8"));
+        	VBox custom = (loader.load(getClass().getClassLoader().getResource("init.fxml").openStream()));
+        	Alert alert = new Alert(Alert.AlertType.NONE);
+            alert.setTitle("New Git Repository");
+            
+        	DialogPane dialog = alert.getDialogPane();
+        	dialog.setContent(custom);
+        	
+        	Window window = alert.getDialogPane().getScene().getWindow();
+            window.setOnCloseRequest(event -> window.hide());
+            alert.showAndWait();    
+    		
+    	} catch(IOException e) {
+    		e.printStackTrace();
+    	}
+    }
+    
+    public void openTreeView() {
+    	try {
+			loadVista("tree.fxml");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}  
     }
 }
