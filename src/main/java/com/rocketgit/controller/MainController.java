@@ -54,6 +54,8 @@ public class MainController {
 
     // TODO Remove dummy data
     private void initRepoList() {
+    	// inicializamos la lista de repositorios
+    	// por ahora la información es dummy, se cambiará este método
         treeViewRepoList.setEditable(false);
         TreeItem<String> root = new TreeItem<>();
         FontAwesomeIconView icon = new FontAwesomeIconView();
@@ -67,7 +69,7 @@ public class MainController {
         }
         root.setExpanded(true);
         
-        
+        // Agregamos el evento de la lista para que al ser presionados abra el nuevo fxml
         treeViewRepoList.setOnMouseClicked(new EventHandler<MouseEvent>()
         {
             @Override
@@ -81,11 +83,12 @@ public class MainController {
         treeViewRepoList.setRoot(root);
     }
             
-    
+    // Los cambios de pantalla solo se irán haciendo cambiando el stack_pane
     public void setView(Node node) {
     	stack_pane.getChildren().setAll(node);
     }
     
+    // Para cargar una nueva vista
     public void loadVista(String fxml) throws IOException {
     	FXMLLoader loader = new FXMLLoader();
    	 
@@ -100,7 +103,7 @@ public class MainController {
     	setView(root);
     }
     
-    
+    // Evento para abrir la configuracion 
     public void openConfig(ActionEvent actionEvent)  {    	
     	try {
 			loadVista("config.fxml");
@@ -110,7 +113,7 @@ public class MainController {
 		}   	
     }
     
-    
+    // Evento para abrir el dialogo de new repo
     public void openNew(ActionEvent actionEvent) {
     	
     	try {
@@ -124,12 +127,15 @@ public class MainController {
         	loader.setResources(rb);
         	loader.setCharset(Charset.forName("UTF-8"));
         	VBox custom = (loader.load(getClass().getClassLoader().getResource("init.fxml").openStream()));
+        	// Se crea una alerta
         	Alert alert = new Alert(Alert.AlertType.NONE);
             alert.setTitle("New Git Repository");
             
+            // Se hace un dialog pane
         	DialogPane dialog = alert.getDialogPane();
         	dialog.setContent(custom);
         	
+        	// Se agrega a la ventana
         	Window window = alert.getDialogPane().getScene().getWindow();
             window.setOnCloseRequest(event -> window.hide());
             alert.showAndWait();    
@@ -139,6 +145,7 @@ public class MainController {
     	}
     }
     
+    // Evento para abrir el Tree
     public void openTreeView() {
     	try {
 			loadVista("tree.fxml");

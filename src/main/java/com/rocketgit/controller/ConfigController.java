@@ -72,12 +72,14 @@ public class ConfigController {
 
 		// TODO Remove dummy data
 	private void initRepoList() {
+		// Configuraciones iniciales
 	    config_scope.getItems().addAll("Local", "Global", "System");
 	    initGrid();
 	}
 	
 	
 	public void initGrid() {
+		// Para que todos los grid estén ocultos
 		config_branch_grid.setVisible(false);
 		config_branch_grid.managedProperty().bind(config_branch_grid.visibleProperty());
 		
@@ -119,6 +121,7 @@ public class ConfigController {
 		collapseOrExpand(config_status_open, config_status_grid);
 	}
 
+	// Metodo para collapsar y expandir los colores 
 	private static void collapseOrExpand(Button btn, GridPane grid) {
 		if(btn.getStyleClass().contains("show")) {
 			btn.getStyleClass().remove("show");
@@ -132,35 +135,4 @@ public class ConfigController {
 	
 	}
 	
-	public void openConfig(ActionEvent actionEvent)  {
-    	FXMLLoader loader = new FXMLLoader();
-    	 
-    	ResourceBundle rb = ResourceBundle.getBundle(
-    				"i18n.main",
-    				new Locale.Builder().setLanguage("en").build()
-    				);
-    	loader.setResources(rb);
-    	loader.setCharset(Charset.forName("UTF-8"));
-
-    	try {
-    		Font.loadFont(getClass().getClassLoader().getResource("Comfortaa-Regular.ttf").toExternalForm(), 13);
-    	}
-    	catch (Exception e) {
-    		e.printStackTrace();
-    		System.exit(0);
-    	}
-    	try {
-    		Parent root = loader.load(getClass().getClassLoader().getResource("config.fxml").openStream());
-
-    		root.setStyle("-fx-font-family: 'Comfortaa';");
-    		Scene scene = new Scene(root);
-    		Stage app_stage = (Stage) border_pane.getScene().getWindow();
-    	    //app_stage.hide(); //optional
-    	    app_stage.setScene(scene);
-    	    app_stage.show();
-    	} catch(Exception e) {
-    		e.printStackTrace();
-    	}
-    	
-    }
 }
